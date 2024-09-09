@@ -127,34 +127,34 @@ void Swap(int& a, int& b)
 //	return 0;
 //}
 
-#include <time.h>
-// 传值
-struct A{ int a[10000]; }; 
-void TestFunc1(A a) {}
-// 传引用
-void TestFunc2(A& a) {}
-
-void TestRefAndValue()
-{
-	A a;
-	// 以值作为函数参数
-	size_t begin1 = clock();
-	for (size_t i = 0; i < 10000; i++)
-	{
-		TestFunc1(a);
-	}
-	size_t end1 = clock();
-	// 以引用作为函数参数
-	size_t begin2 = clock();
-	for (size_t i = 0; i < 10000; i++)
-	{
-		TestFunc2(a);
-	}
-	size_t end2 = clock();
-	// 分别计算两个函数运行结束后的时间
-	cout << "TestFunc1(A)-time:" << end1 - begin1 << endl;
-	cout << "TestFunc2(A&)-time:" << end2 - begin2 << endl;
-}
+//#include <time.h>
+//// 传值
+//struct A{ int a[10000]; }; 
+//void TestFunc1(A a) {}
+//// 传引用
+//void TestFunc2(A& a) {}
+//
+//void TestRefAndValue()
+//{
+//	A a;
+//	// 以值作为函数参数
+//	size_t begin1 = clock();
+//	for (size_t i = 0; i < 10000; i++)
+//	{
+//		TestFunc1(a);
+//	}
+//	size_t end1 = clock();
+//	// 以引用作为函数参数
+//	size_t begin2 = clock();
+//	for (size_t i = 0; i < 10000; i++)
+//	{
+//		TestFunc2(a);
+//	}
+//	size_t end2 = clock();
+//	// 分别计算两个函数运行结束后的时间
+//	cout << "TestFunc1(A)-time:" << end1 - begin1 << endl;
+//	cout << "TestFunc2(A&)-time:" << end2 - begin2 << endl;
+//}
 
 //int main()
 //{
@@ -162,13 +162,13 @@ void TestRefAndValue()
 //	return 0;
 //}
 
-int& Count()
-{
-	static int n = 0;
-	n++;
-	// ... 
-	return n;
-}
+//int& Count()
+//{
+//	static int n = 0;
+//	n++;
+//	// ... 
+//	return n;
+//}
 
 //int main()
 //{
@@ -180,5 +180,157 @@ int& Count()
 //{
 //	int c = a + b;
 //	return c;
+//}
+
+//int& Count()
+//{
+//	int n = 0;
+//	n++;
+//	// ...
+//	return n;
+//}
+
+
+//int main()
+//{
+//	int ret = Count();
+//	int a = 10;
+//	cout << a << endl;
+//	cout << ret << endl;
+//	cout << a << endl;
+//	cout << ret << endl;
+//
+//	return 0;
+//}
+
+//int main()
+//{
+//	int ret = Count();
+//	for (int i = 0; i < 10; i++)
+//	{
+//		cout << ret << endl;
+//	}
+//	return 0;
+//}
+
+#include<time.h>
+struct A { int a[10000]; };
+
+A a;
+// 值返回
+A TestFunc1() { return a; }
+// 引用返回
+A& TestFunc2() { return a; }
+
+void TestReturnByRefOrValue()
+{
+	// 以值作为函数的返回值类型
+	size_t begin1 = clock();
+	for (int i = 0; i < 100000; i++)
+		TestFunc1();
+	size_t end1 = clock();
+	// 以引用作为函数的返回值类型
+	size_t begin2 = clock();
+	for (int i = 0; i < 100000; i++)
+		TestFunc2();
+	size_t end2 = clock();
+	// 计算两个函数运算完成之后的时间
+	cout << "TestFunc1() Time:" << begin1 - end1 << endl;
+	cout << "TestFunc2() Time:" << begin2 - end2 << endl;
+}
+
+//int main()
+//{
+//	TestReturnByRefOrValue();
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int a = 10;
+//	int& b = a;
+//	cout << &a << endl;
+//	cout << &b << endl;
+//	return 0;
+//}
+
+//int main()
+//{
+//	int a = 10;
+//	int& ra = a;
+//	ra = 20;
+//	int* pa = &a;
+//	*pa = 20;
+//	return 0;
+//}
+
+//int main()
+//{
+//	int a = 20;
+//	int* pa;
+//	int& ra;
+//	return 0;
+//}
+
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	int* pa = &a;
+//	pa = &b;
+//	int& ra = a;
+//	int& ra = b;
+//	return 0;
+//}
+
+//int main()
+//{
+//	int* pa = NULL;
+//	int& ra = NULL;
+//	return 0;
+//}
+
+// #include<string>
+//int main()
+//{
+//	string str = "abcdef";
+//	string& rstr = str;
+//	string* pstr = &str;
+//	cout << "string& rstr = str: " << sizeof(rstr) << endl;
+//	cout << "string* pstr = &str: " << sizeof(pstr) << endl;
+//	return 0;
+//}
+
+//int main()
+//{
+//	int a = 10;
+//	int& ra = a;
+//	int* pa = &a;
+//	ra++;
+//	pa++;
+//	cout << "int& ra = a:  " << ra << endl;
+//	cout << "int* pa = &a: " << pa << endl;
+//	return 0;
+//}
+
+//int main()
+//{
+//	int a = 10;
+//	int* pa = &a;
+//	int** ppa = &pa;
+//	int& ra = a;
+//	int&& rra = ra;
+//	return 0;
+//}
+
+//int main()
+//{
+//	int a = 10;
+//	int* pa = &a;
+//	int& ra = a;
+//	cout << ra << endl;
+//	cout << *pa << endl;
+//	return 0;
 //}
 
